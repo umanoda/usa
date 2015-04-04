@@ -70,8 +70,32 @@ func TestFilteirFilter(t *testing.T) {
 	}
 
 	arr := Filter(seed).Filter(isEven).Run().ToArray()
-	testAssert(t, arr[0] == 2, "Could not assert that Usa get by array.")
+	testAssert(t, arr[0] == 2, "Could not pass data to filter.")
 	testAssert(t, arr[1] == 4)
+}
+
+func TestBrakeStream(t *testing.T) {
+	seed := func(_, out Ch) {
+		for i := 1; i < 100; i++ {
+			out <- i
+		}
+		close(out)
+	}
+	getHead3 := func(in, out Ch) {
+    cnt := 0
+    for i := range in{
+      out <- i
+      cnt += 1
+      if cnt > 2{
+        break
+      }
+		}
+		close(out)
+	}
+
+	arr := Filter(seed).Filter(getHead3).Run().ToArray()
+  fmt.Println(arr)
+	testAssert(t, len(arr) == 3, "Could not break pipe stream  when upstream is living.")
 }
 
 func Example() {
