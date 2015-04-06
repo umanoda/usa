@@ -61,3 +61,7 @@ func stdout(val string) bool {
 	return true // Dummy return value
 }
 ```
+
+# License
+
+* MIT - see MIT-LICENSE.txt
