@@ -2,7 +2,7 @@
 
 Go lang liblary, like shell's pipe stream.
 
-Usa is meaning in rabbit :rabbit: in japanese.
+Usa is meaning rabbit :rabbit: in japanese.
 
 # Usage
 
